@@ -12,23 +12,16 @@ class HomeView extends StatelessWidget {
           onPressed: () {},
         ),
         body: Center(
-          child: Text("Main Screen"),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.red,
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.all_inbox), label: "All tasks"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.done), label: "Done Tasks"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.read_more), label: "Remaining Tasks"),
-          ],
-          currentIndex: viewModel.selectedIndex,
-          onTap: viewModel.onItemTap(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("Main Screen"),
+              ElevatedButton(onPressed: () {}, child: Text("View All tasks")),
+              ElevatedButton(onPressed: () {}, child: Text("View Done tasks")),
+              ElevatedButton(
+                  onPressed: () {}, child: Text("View Remaining tasks"))
+            ],
+          ),
         ),
       ),
     );

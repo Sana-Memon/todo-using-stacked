@@ -12,7 +12,22 @@ class AllTasksView extends StatelessWidget {
           onPressed: () {},
         ),
         body: Center(
-          child: Text("All Tasks Screen"),
+          child: Column(
+            children: [
+              Text("All Tasks Screen"),
+              ListView.builder(
+                  itemCount: viewModel.grabingLengthfromService(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                        leading: const Icon(Icons.list),
+                        trailing: Text(
+                          "${viewModel.allTasks}",
+                          style: TextStyle(color: Colors.green, fontSize: 15),
+                        ),
+                        title: Text("List item $index"));
+                  }),
+            ],
+          ),
         ),
       ),
     );
