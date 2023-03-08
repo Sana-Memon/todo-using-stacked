@@ -7,9 +7,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i5;
+import 'package:stacked_services/stacked_services.dart' as _i6;
+import 'package:todo_app_using_stacked/views/add_task_view.dart' as _i4;
 import 'package:todo_app_using_stacked/views/all_tasks_view.dart' as _i2;
-import 'package:todo_app_using_stacked/views/home_view.dart' as _i4;
+import 'package:todo_app_using_stacked/views/home_view.dart' as _i5;
 import 'package:todo_app_using_stacked/views/remaining_tasks_view.dart' as _i3;
 
 class Routes {
@@ -17,11 +18,14 @@ class Routes {
 
   static const remainingTasksView = '/remaining-tasks-view';
 
+  static const addNewTask = '/add-new-task';
+
   static const homeView = '/';
 
   static const all = <String>{
     allTasksView,
     remainingTasksView,
+    addNewTask,
     homeView,
   };
 }
@@ -37,8 +41,12 @@ class StackedRouter extends _i1.RouterBase {
       page: _i3.RemainingTasksView,
     ),
     _i1.RouteDef(
+      Routes.addNewTask,
+      page: _i4.AddNewTask,
+    ),
+    _i1.RouteDef(
       Routes.homeView,
-      page: _i4.HomeView,
+      page: _i5.HomeView,
     ),
   ];
 
@@ -55,9 +63,15 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i4.HomeView: (data) {
+    _i4.AddNewTask: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => _i4.HomeView(),
+        builder: (context) => _i4.AddNewTask(),
+        settings: data,
+      );
+    },
+    _i5.HomeView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => _i5.HomeView(),
         settings: data,
       );
     },
@@ -69,7 +83,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i5.NavigationService {
+extension NavigatorStateExtension on _i6.NavigationService {
   Future<dynamic> navigateToAllTasksView([
     int? routerId,
     bool preventDuplicates = true,
@@ -92,6 +106,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return navigateTo<dynamic>(Routes.remainingTasksView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToAddNewTask([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.addNewTask,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -134,6 +162,20 @@ extension NavigatorStateExtension on _i5.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.remainingTasksView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithAddNewTask([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.addNewTask,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

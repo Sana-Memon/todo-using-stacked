@@ -1,14 +1,16 @@
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:todo_app_using_stacked/app/app.locator.dart';
+import 'package:todo_app_using_stacked/app/app.router.dart';
 import 'package:todo_app_using_stacked/views/all_tasks_view.dart';
 import 'package:todo_app_using_stacked/views/remaining_tasks_view.dart';
 
 import '../views/home_view.dart';
 
 class HomeViewModel extends BaseViewModel {
-  int selectedIndex = 0;
-  List _widgetOptions = [HomeView(), AllTasksView(), RemainingTasksView()];
-  int index = 0;
-  onItemTap() {
-    selectedIndex = index;
+  final nav = locator<NavigationService>();
+
+  redirectToAllTasks() {
+    nav.navigateToAllTasksView();
   }
 }

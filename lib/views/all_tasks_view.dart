@@ -15,17 +15,30 @@ class AllTasksView extends StatelessWidget {
           child: Column(
             children: [
               Text("All Tasks Screen"),
-              ListView.builder(
-                  itemCount: viewModel.grabingLengthfromService(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                        leading: const Icon(Icons.list),
-                        trailing: Text(
-                          "${viewModel.allTasks}",
-                          style: TextStyle(color: Colors.green, fontSize: 15),
-                        ),
-                        title: Text("List item $index"));
-                  }),
+              Expanded(
+                child: ListView.builder(
+                    itemCount: viewModel.TasksTook.allTasks.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                          leading: const Icon(Icons.list),
+                          title: Text("${viewModel.TasksTook.allTasks[index]}"),
+                          trailing: GestureDetector(
+                              onTap: (() {
+                                viewModel.marksAsDone(index);
+                              }),
+                              child: Icon(Icons.done)));
+                    }),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    viewModel.navigateToDone();
+                  },
+                  child: Text("View Done Tasks")),
+              ElevatedButton(
+                  onPressed: () {
+                    viewModel.navigateToAddNew();
+                  },
+                  child: Text("Add new Tasks")),
             ],
           ),
         ),

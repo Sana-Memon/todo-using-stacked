@@ -16,7 +16,11 @@ class HomeView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text("Main Screen"),
-              ElevatedButton(onPressed: () {}, child: Text("View All tasks")),
+              ElevatedButton(
+                  onPressed: () {
+                    viewModel.redirectToAllTasks();
+                  },
+                  child: Text("View All tasks")),
               ElevatedButton(onPressed: () {}, child: Text("View Done tasks")),
               ElevatedButton(
                   onPressed: () {}, child: Text("View Remaining tasks"))
